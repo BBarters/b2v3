@@ -2,5 +2,5 @@
 
 
 Route::get('/', function () {
-    return view('login.login');
+    return view('login');
 });
