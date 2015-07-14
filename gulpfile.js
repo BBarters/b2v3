@@ -11,6 +11,12 @@ var elixir = require('laravel-elixir');
  |
  */
 
+var paths = {
+    'bower_base_path': './bower_components/',
+    'bootstrap': './bower_components/bootstrap-material-design/'
+};
+
 elixir(function(mix) {
-    mix.less('app.less');
+    mix.sass('*.scss','css/style.css');
+    mix.coffee('*.coffee','js/script.js');
 });
