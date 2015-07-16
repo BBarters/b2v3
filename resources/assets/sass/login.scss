@@ -1,0 +1,51 @@
+$dark-primary-color : #00796B;
+$light-primary-color :#B2DFDB;
+$primary-color : #009688;
+$accent-color : #536DFE;
+
+
+#login-button{
+  background-color: $accent-color;
+  color: #ffffff;
+}
+
+#signup-button{
+  background-color: $primary-color;
+  color: #ffffff;
+}
+
+
+#navbar{
+
+  height: 100px;
+  background-color: $primary-color;
+
+  h3{
+        color: #ffffff;
+
+  }
+
+  h5{
+       color: $light-primary-color;
+  }
+}
+
+
+
+
+
+/*
+
+will be required later
+
+<a href="#" class="btn btn-fab">
+<img id="testing" src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png">
+</a>
+  #testing{
+      overflow: hidden;
+      background-position: 50%;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+  }
+*/
