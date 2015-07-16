@@ -19,4 +19,6 @@ var paths = {
 elixir(function(mix) {
     mix.sass('*.scss','css/style.css');
     mix.coffee('*.coffee','js/script.js');
+
+    mix.phpUnit();
 });
