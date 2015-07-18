@@ -48,6 +48,19 @@
 
                 </div>
 
+                @if(isset($error))
+
+                <script>
+                        var options =  {
+                            content: "Incorrect username or password",
+                            style: "toast",
+                            timeout: 1000
+                        }
+                        $.snackbar(options);
+                    </script>
+
+                @endif
+
             </div>
 
         </div>

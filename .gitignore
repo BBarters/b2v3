@@ -3,3 +3,4 @@
 .env
 .idea\workspace.xml
 /tests
+/resources/views/parent/parent.blade.php
