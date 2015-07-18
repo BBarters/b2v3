@@ -39,6 +39,21 @@ class LoginAndRegistrationController extends Controller
 
    public function signup()
    {
+       try {
+           $user = new User();
+           $user->name = Input::get('username');
+           $user->password = Hash::make(Input::get('password'));
+           $user->email = Input::get('email');
+           $user->save();
+
+           return Redirect::intended('home');
+       }
+       catch(Exception $e){
+           $user->delete;
+           return Redirect::intended('/')->with('error','Could not sign you up dawg!!');
+
+       }
+
 
    }
 }

@@ -16,6 +16,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
     {
         $stack = array();
         array_push($stack,'foo');
-        $this->assertEquals('asa,jdh',array_pop($stack));
+        $this->assertEquals('foo',array_pop($stack));
+
     }
 }
