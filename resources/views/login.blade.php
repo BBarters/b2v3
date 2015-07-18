@@ -17,7 +17,6 @@
                     Nothing gets done around here
                 </h5>
 
-
             </div>
         </div>
 
@@ -26,7 +25,7 @@
 
             <div class="container-fluid" style="margin-top: 50px">
 
-                <div class="well page active" id="about" style="display: block;">
+                <div class="well active" id="about" style="display: block;">
 
                     <h1 class="header" >Login</h1>
 
@@ -40,7 +39,7 @@
                         </div>
                         {!! Form::submit('Login',['class'=>'btn','id'=>'login-button']) !!}
 
-                        <a id="signup-button" type="btn" class="btn" href="#" >SignUp</a>
+                        <a id="signup-button" type="btn" class="btn" href="signup" >SignUp</a>
                         {!! Form::close()!!}
 
 
@@ -55,7 +54,7 @@
                             content: "Incorrect username or password",
                             style: "toast",
                             timeout: 1000
-                        }
+                            }
                         $.snackbar(options);
                     </script>
 

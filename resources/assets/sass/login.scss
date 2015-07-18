@@ -1,8 +1,4 @@
-$dark-primary-color : #00796B;
-$light-primary-color :#B2DFDB;
-$primary-color : #009688;
-$accent-color : #536DFE;
-
+@import "variables";
 
 #login-button{
   background-color: $accent-color;
@@ -16,13 +12,11 @@ $accent-color : #536DFE;
 
 
 #navbar{
-
   height: 100px;
   background-color: $primary-color;
 
   h3{
         color: #ffffff;
-
   }
 
   h5{

@@ -1,3 +1,5 @@
+@import "variables";
+
 .menu {
   overflow: auto;
   padding: 0;
@@ -5,16 +7,16 @@
   ul {
     padding: 0;
     margin: 7px 0;
-  }
 
-  li {
-    list-style: none;
-    padding: 20px 0 20px 50px;
-    font-size: 15px;
-    font-weight: normal;
-    cursor: pointer;
-  }
+    li {
+      list-style: none;
+      padding: 20px 0 20px 50px;
+      font-size: 15px;
+      font-weight: normal;
+      cursor: pointer;
+    }
 
+  }
   a {
     color: rgb(51, 51, 51);
     text-decoration: none;
@@ -30,6 +32,7 @@
   background-color: #dedede;
   position: relative;
 }
+
 .pages {
   top: 0;
   right: 0;
@@ -54,4 +57,17 @@
 
 .modal-backdrop {
   z-index: -1;
+}
+
+#cus-navbar{
+  height: 100px;
+  background-color: $primary-color;
+
+  h3{
+    color: #ffffff;
+  }
+
+  h5{
+    color: $light-primary-color;
+  }
 }
