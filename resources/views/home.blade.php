@@ -2,9 +2,11 @@
 
 @section('content')
 
+@include('parent.cus-navbar')
+
 <div class="container-fluid main" style="height: 631px;">
 
-    <div class="row">
+    <div class="row" style="margin-top: 30px">
 
                 <nav class="col-xs-3 menu" id="sideNav" >
                     <ul>
@@ -19,7 +21,6 @@
 
                     <div class="well page active" id="create" >
                          <h2>Create</h2> <br><br>
-
 
                         <input type="text" id="title" class="form-control floating-label" placeholder="Title">
                         <br>
