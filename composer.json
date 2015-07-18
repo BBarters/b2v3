@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
 
-        "phpspec/phpspec": "^2.2@dev"
+        "phpspec/phpspec": "^2.2@dev",
         "illuminate/html": "^5.0@dev"
 
     },
