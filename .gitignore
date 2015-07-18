@@ -3,5 +3,6 @@
 .env
 .idea\workspace.xml
 /tests
+
 composer.lock
 resources/views/parent/parent.blade.php
