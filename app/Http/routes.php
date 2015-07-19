@@ -13,5 +13,8 @@ Route::get('/home','LoginAndRegistrationController@home');
 //Route::resource('/login','LoginAndRegistrationController');
 Route::get('/test','TestController@getSome');
 
+Route::get('signup','LoginAndRegistrationController@signup');
 
-Route::post('signup','LoginAndRegistrationController@signup');
+Route::get('/signupView',function (){
+      return view('signup');
+});

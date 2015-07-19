@@ -18,7 +18,7 @@ class LoginAndRegistrationController extends Controller
        $username = Request::get('username');
        $password = Request::get('password');
 
-       $credentials = array('username'=>$username,'password'=>$password);
+       $credentials = array('name'=>$username,'password'=>$password);
 
        if (Auth::attempt($credentials)) {
            return Redirect::intended('home');
@@ -42,18 +42,16 @@ class LoginAndRegistrationController extends Controller
        try {
            $user = new User();
            $user->name = Input::get('username');
-           $user->password = Hash::make(Input::get('password'));
+           $user->password = bcrypt(Input::get('password'));
            $user->email = Input::get('email');
            $user->save();
 
-           return Redirect::intended('home');
+           return 'success';
        }
        catch(Exception $e){
-           $user->delete;
-           return Redirect::intended('/')->with('error','Could not sign you up dawg!!');
 
+           return array('error'=>'Could not sign you up dawg!!');
        }
-
-
    }
+
 }

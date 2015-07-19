@@ -11,7 +11,7 @@
                 <nav class="col-xs-3 menu" id="sideNav" >
                     <ul>
                         <li class="active withripple" data-target="#create">Create</li>
-                        <li class="withripple" data-target="#read" onclick="loadArticles()">Read</li>
+                        <li class="withripple" data-target="#read" id="readArticle">Read</li>
                     </ul>
                  </nav>
 
@@ -28,8 +28,7 @@
                         <br> <br>
                         <textarea id="content" class="form-control" placeholder="Content" style="height: 300px"></textarea>
                         <br><br>
-                        <button class="btn btn-primary shadow-z-2" onclick="createArticle()">Submit</button>
-
+                        <button class="btn btn-primary shadow-z-2" id="submit">Submit</button>
                         <input id="token" type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
                     </div>
@@ -52,9 +51,7 @@
 
                             <button id="showArticle-edit" class="btn btn-fab btn-raised btn-danger" style=" float: right; margin-top: -30px; margin-right: 16px"><i class="mdi-image-edit"></i></button>
 
-
                         </div>
-
 
                             <p id="showArticle-content" style="margin-top: 20px"></p>
 
@@ -91,11 +88,18 @@
         </div>
     </div>
 
-    <input type="hidden" value="{{Auth::user()->username}}">
+    <input type="hidden" id="username" value="{{Auth::user()->username}}">
 
     @include('parent.message')
 
 </div>
+
+<script>
+    creating=new B3.Create($('#create'));
+    displayArticleList=new B3.DisplayArticleList($('.container-fluid main'));
+</script>
+
+
 
 <script>
     window.page = window.location.hash || "#create";

@@ -39,7 +39,7 @@
                         </div>
                         {!! Form::submit('Login',['class'=>'btn','id'=>'login-button']) !!}
 
-                        <a id="signup-button" type="btn" class="btn" href="signup" >SignUp</a>
+                        <a id="signup-button" type="btn" class="btn" href="signupView" >SignUp</a>
                         {!! Form::close()!!}
 
 

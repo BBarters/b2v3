@@ -24,7 +24,7 @@
 
             <div class="well active" id="about" style="display: block;">
 
-                <h1 class="header" >Login</h1>
+                <h1 class="header" >Signup</h1>
 
                 <div class="inputs" style="margin-top: 36px">
 
@@ -51,7 +51,7 @@
     </div>
 
     <script>
-        testingObject=new B3.Signup($('.row'))
+        signing=new B3.Signup($('.row'))
     </script>
 
 @stop
