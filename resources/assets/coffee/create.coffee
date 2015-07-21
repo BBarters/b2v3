@@ -4,10 +4,10 @@ class B3.Create
 
   init: ->
     @container.find('#submit').on 'click', =>
-      @create()
+      @createArticle()
       return
 
-  create: ->
+  createArticle: ->
     title=@container.find('#title').val()
     description=@container.find('#description').val()
     content=@container.find('#content').val()

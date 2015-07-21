@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 class LoginAndRegistrationController extends Controller
 {
+    public function testing()
+    {
+       return 'ok';
+    }
+
    public function login()
    {
 

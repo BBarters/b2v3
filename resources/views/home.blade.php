@@ -4,7 +4,7 @@
 
 @include('parent.cus-navbar')
 
-<div class="container-fluid main" style="height: 631px;">
+<div id="container" class="container-fluid main" style="height: 631px;">
 
     <div class="row" style="margin-top: 30px">
 
@@ -95,8 +95,8 @@
 </div>
 
 <script>
-    creating=new B3.Create($('#create'));
-    displayArticleList=new B3.DisplayArticleList($('.container-fluid main'));
+    creating=new B3.Create($('#create"));
+    displayArticleList=new B3.DisplayArticleList($("#container"));
 </script>
 
 

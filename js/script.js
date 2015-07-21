@@ -1,4 +1,11 @@
 (function() {
+  if (this.B3 == null) {
+    this.B3 = {};
+  }
+
+}).call(this);
+
+(function() {
   B3.Create = (function() {
     function Create(container) {
       this.container = container;
@@ -8,12 +15,12 @@
     Create.prototype.init = function() {
       return this.container.find('#submit').on('click', (function(_this) {
         return function() {
-          _this.create();
+          _this.createArticle();
         };
       })(this));
     };
 
-    Create.prototype.create = function() {
+    Create.prototype.createArticle = function() {
       var content, description, title, token;
       title = this.container.find('#title').val();
       description = this.container.find('#description').val();
@@ -243,13 +250,6 @@
     return ModifyArticle;
 
   })();
-
-}).call(this);
-
-(function() {
-  if (this.B3 == null) {
-    this.B3 = {};
-  }
 
 }).call(this);
 

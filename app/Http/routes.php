@@ -18,3 +18,5 @@ Route::get('signup','LoginAndRegistrationController@signup');
 Route::get('/signupView',function (){
       return view('signup');
 });
+
+Route::get('/testing','LoginAndRegistrationController@testing');
