@@ -5,3 +5,4 @@
 
 composer.lock
 resources/views/parent/parent.blade.php
+resources/views/parent/parent.blade.php
