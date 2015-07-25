@@ -20,3 +20,17 @@ Route::get('/signupView',function (){
 });
 
 Route::get('/testing','LoginAndRegistrationController@testing');
+
+Route::post('/create','LoginAndRegistrationController@create');
+
+Route::get('/getArticleList','LoginAndRegistrationController@getArticleList');
+
+Route::get('/getArticle/{id}','LoginAndRegistrationController@getArticle');
+
+Route::post('/updateArticle/{id}','LoginAndRegistrationController@updateArticle');
+
+Route::get('/deleteArticle/{id}','LoginAndRegistrationController@deleteArticle');
+
+
+
+
