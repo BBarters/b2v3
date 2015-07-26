@@ -5,45 +5,38 @@ class B3.DisplayArticleList
   readArticle:(item) ->
     item.on 'click', =>
       @getArticleList()
-      return
 
   getArticleList: ->
     $.ajax '/b2v3/getArticleList',
       type: 'GET',
       data:{},
       success:(data) =>
-        data="<ul>"+data+"</ul>"
         @container.find('#read-title').html('Articles')
-        @initListOnClick(data)
+        data="<ul>"+data+"</ul>"
         @container.find('#listView-read').html(data)
-        return
+        @initListOnClick(@container.find('#listView-read'),@)
+        $.material.init()
 
 
-  initListOnClick:(list) ->
-      $(list).each(i,li) ->
-        listItem=$(li)
-        listItem.on 'click', =>
-          @showArticle(@listItem.find('#articleId').val())
-          return
-
+  initListOnClick:(list,curObject) ->
+    $(list).on 'click','li.withripple a', ->
+      curObject.showArticle(@.id,curObject)
 
   showArticle:(id) ->
-    $.ajax '/b2v3/getArticle',
+    $.ajax '/b2v3/getArticle/'+ id,
       type: 'GET',
-      data:{id:id},
+      data:{},
       success:(data) =>
-        if data !=null
-          @container.find('#showArticle-title').html(msg['title'])
-          @container.find('#showArticle-content').html(msg['content'])
+        if data!=null
+          @container.find('#showArticle-title').html(data['title'])
+          @container.find('#showArticle-content').html(data['content'])
           @showEdit(data)
         else
           @container.find('#showArticle-title').html('Sorry');
           @container.find('#showArticle-content').html('No content available');
         @animatePage()
-        return
 
-
-  animatePage:() ->
+  animatePage: ->
     page=@container.find('#showArticle')
     @container.find(".menu li").not(page).removeClass("active");
     @container.find(".page").not(page).removeClass("active").hide()
@@ -58,11 +51,10 @@ class B3.DisplayArticleList
         clearInterval(totop)
       setTimeOut(clear,1000)
     setTimeout(anotherShow, 100)
-    return
 
 
   showEdit:(value) ->
     if value['allow']
-      modify=new B3.ModifyArticle(@container,value['id']);
+      new B3.ModifyArticle(@container,value['id']);
     else
       @container.find('#showArticle-edit').css("display","none")

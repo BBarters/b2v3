@@ -14,7 +14,7 @@
                     Welcome to our shitty website
                 </h3>
                 <h5>
-                    Nothing gets done around here
+                    Nothing much happens here
                 </h5>
 
             </div>

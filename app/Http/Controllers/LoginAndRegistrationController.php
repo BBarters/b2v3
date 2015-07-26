@@ -81,15 +81,24 @@ class LoginAndRegistrationController extends Controller
     {
         $articles =Article::all();
 
-        return view('itemRows')->with(['articles'=>$articles]);
+        return view('parent.itemRows')->with(['articles'=>$articles]);
     }
 
     public function getArticle($id)
     {
         $article =Article::find($id);
+        $allow=false;
+
+        if($article->username==Auth::user()->name)
+            $allow=true;
 
         if($article!=null)
-            return array('title'=>$article->title,'content'=>$article->content);
+            return array(
+                'id'=>$id,
+                'title'=>$article->title,
+                'content'=>$article->content,
+                'description'=>$article->description,
+                'allow'=>$allow);
         else
             return null;
     }

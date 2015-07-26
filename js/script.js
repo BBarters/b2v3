@@ -7,13 +7,14 @@
 
 (function() {
   B3.Create = (function() {
-    function Create(container) {
-      this.container = container;
+    function Create(articleContainer, messageDialog) {
+      this.articleContainer = articleContainer;
+      this.messageDialog = messageDialog;
       this.init();
     }
 
     Create.prototype.init = function() {
-      return this.container.find('#submit').on('click', (function(_this) {
+      return this.articleContainer.find('#submit').on('click', (function(_this) {
         return function() {
           _this.createArticle();
         };
@@ -22,11 +23,11 @@
 
     Create.prototype.createArticle = function() {
       var content, description, title, token;
-      title = this.container.find('#title').val();
-      description = this.container.find('#description').val();
-      content = this.container.find('#content').val();
-      token = this.container.find('#token').val();
-      return $.ajax('b2v3/create', {
+      title = this.articleContainer.find('#title').val();
+      description = this.articleContainer.find('#description').val();
+      content = this.articleContainer.find('#content').val();
+      token = this.articleContainer.find('#token').val();
+      return $.ajax('/b2v3/create', {
         type: 'POST',
         data: {
           title: title,
@@ -36,13 +37,14 @@
         },
         success: (function(_this) {
           return function(data) {
-            if (data = 'success') {
-              _this.container.find('#message-title').html('Sucess');
-              return _this.container.find('#message-body').html('Successfuly created article');
+            if (data['value'] = 'success') {
+              _this.messageDialog.find('#message-title').html('Sucess');
+              _this.messageDialog.find('#message-body').html('Successfuly created article');
+              return _this.messageDialog.find('#message-dialog').modal('show');
             } else {
-              _this.container.find('#message-title').html('error');
-              _this.container.find('#message-body').html(data['error']);
-              return _this.container.find('#message-dialog').modal('show');
+              _this.messageDialog.find('#message-title').html('error');
+              _this.messageDialog.find('#message-body').html(data['error']);
+              return _this.messageDialog.find('#message-dialog').modal('show');
             }
           };
         })(this)
@@ -65,7 +67,7 @@
     DisplayArticleList.prototype.readArticle = function(item) {
       return item.on('click', (function(_this) {
         return function() {
-          _this.getArticleList();
+          return _this.getArticleList();
         };
       })(this));
     };
@@ -76,44 +78,37 @@
         data: {},
         success: (function(_this) {
           return function(data) {
-            data = "<ul>" + data + "</ul>";
             _this.container.find('#read-title').html('Articles');
-            _this.initListOnClick(data);
+            data = "<ul>" + data + "</ul>";
             _this.container.find('#listView-read').html(data);
+            _this.initListOnClick(_this.container.find('#listView-read'), _this);
+            return $.material.init();
           };
         })(this)
       });
     };
 
-    DisplayArticleList.prototype.initListOnClick = function(list) {
-      return $(list).each(i, li)(function() {
-        var listItem;
-        listItem = $(li);
-        return listItem.on('click', (function(_this) {
-          return function() {
-            _this.showArticle(_this.listItem.find('#articleId').val());
-          };
-        })(this));
+    DisplayArticleList.prototype.initListOnClick = function(list, curObject) {
+      return $(list).on('click', 'li.withripple a', function() {
+        return curObject.showArticle(this.id, curObject);
       });
     };
 
     DisplayArticleList.prototype.showArticle = function(id) {
-      return $.ajax('/b2v3/getArticle', {
+      return $.ajax('/b2v3/getArticle/' + id, {
         type: 'GET',
-        data: {
-          id: id
-        },
+        data: {},
         success: (function(_this) {
           return function(data) {
             if (data !== null) {
-              _this.container.find('#showArticle-title').html(msg['title']);
-              _this.container.find('#showArticle-content').html(msg['content']);
+              _this.container.find('#showArticle-title').html(data['title']);
+              _this.container.find('#showArticle-content').html(data['content']);
               _this.showEdit(data);
             } else {
               _this.container.find('#showArticle-title').html('Sorry');
               _this.container.find('#showArticle-content').html('No content available');
             }
-            _this.animatePage();
+            return _this.animatePage();
           };
         })(this)
       });
@@ -140,13 +135,12 @@
         };
         return setTimeOut(clear, 1000);
       };
-      setTimeout(anotherShow, 100);
+      return setTimeout(anotherShow, 100);
     };
 
     DisplayArticleList.prototype.showEdit = function(value) {
-      var modify;
       if (value['allow']) {
-        return modify = new B3.ModifyArticle(this.container, value['id']);
+        return new B3.ModifyArticle(this.container, value['id']);
       } else {
         return this.container.find('#showArticle-edit').css("display", "none");
       }
@@ -174,11 +168,9 @@
     };
 
     ModifyArticle.prototype.editModel = function(id) {
-      return $.ajax('/b2v3/getArticle', {
+      return $.ajax('/b2v3/getArticle/' + id, {
         type: 'GET',
-        data: {
-          id: id
-        },
+        data: {},
         success: (function(_this) {
           return function(data) {
             if (data !== null) {
@@ -198,13 +190,13 @@
       });
     };
 
-    ModifyArticle.prototype.upadteArticle = function(id) {
+    ModifyArticle.prototype.updateArticle = function(id) {
       var content, description, title, token;
       title = this.container.find('#update-title').val();
       description = this.container.find('#update-description').val();
       content = this.container.find('#update-content').val();
       token = this.container.find('#token').val();
-      return $.ajax('b2v3/updateArticle', {
+      return $.ajax('/b2v3/updateArticle/' + id, {
         type: 'POST',
         data: {
           title: title,
@@ -225,11 +217,9 @@
     };
 
     ModifyArticle.prototype.deleteArticle = function(id) {
-      return $.ajax('b2v3/deleteArticle', {
+      return $.ajax('/b2v3/deleteArticle/' + id, {
         type: 'GET',
-        data: {
-          id: id
-        },
+        data: {},
         success: (function(_this) {
           return function(data) {
             if (data = 'success') {

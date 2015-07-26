@@ -7,9 +7,9 @@ class B3.ModifyArticle
       @editModel(id)
 
   editModel:(id) ->
-    $.ajax '/b2v3/getArticle',
+    $.ajax '/b2v3/getArticle/'+id,
       type: 'GET',
-      data:{id:id},
+      data:{},
       success:(data) =>
         if data !=null
           @container.find('#update-update').on 'click', =>
@@ -22,12 +22,12 @@ class B3.ModifyArticle
           @container.find('#update-dialog').modal('show')
         return
 
-  upadteArticle:(id) ->
+  updateArticle:(id) ->
     title=@container.find('#update-title').val()
     description=@container.find('#update-description').val()
     content=@container.find('#update-content').val()
     token=@container.find('#token').val()
-    $.ajax 'b2v3/updateArticle',
+    $.ajax '/b2v3/updateArticle/'+id,
       type: 'POST',
       data:{title:title,description:description,content:content,_token:token},
       success:(data) =>
@@ -37,9 +37,9 @@ class B3.ModifyArticle
           @container.find('#message-dialog').modal('show');
 
   deleteArticle:(id) ->
-    $.ajax 'b2v3/deleteArticle',
+    $.ajax '/b2v3/deleteArticle/'+id,
       type: 'GET',
-      data:{id:id},
+      data:{},
       success:(data) =>
         if data='success'
           @container.find('.menu').find('li[data-target=#read]').trigger('click')

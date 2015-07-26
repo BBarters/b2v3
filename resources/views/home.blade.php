@@ -95,7 +95,7 @@
 </div>
 
 <script>
-    creating=new B3.Create($('#create"));
+    creating=new B3.Create($('#create'),$('#message'));
     displayArticleList=new B3.DisplayArticleList($("#container"));
 </script>
 

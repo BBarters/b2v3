@@ -2,8 +2,9 @@
 @if(count($articles)>0)
 @foreach($articles as $article)
 <li class="withripple"  >
-   <a href="#">
-    <input id="articleID" type="hidden" value="{{$article->id}}">
+   <a id="{{$article->id}}" class="items" href="#">
+  <!--  <input id="articleId" type="hidden" value="{{$article->id}}">
+  -->
     <div class="list-group-item" >
     <div class="row-action-primary">
         <i class="mdi-file-folder"></i>

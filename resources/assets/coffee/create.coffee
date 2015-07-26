@@ -1,26 +1,28 @@
 class B3.Create
-  constructor:(@container)->
+  constructor:(@articleContainer,@messageDialog)->
     @init()
 
   init: ->
-    @container.find('#submit').on 'click', =>
+    @articleContainer.find('#submit').on 'click', =>
       @createArticle()
       return
 
+
   createArticle: ->
-    title=@container.find('#title').val()
-    description=@container.find('#description').val()
-    content=@container.find('#content').val()
-    token=@container.find('#token').val()
-    $.ajax 'b2v3/create',
+    title=@articleContainer.find('#title').val()
+    description=@articleContainer.find('#description').val()
+    content=@articleContainer.find('#content').val()
+    token=@articleContainer.find('#token').val()
+    $.ajax '/b2v3/create',
       type: 'POST',
       data:{title:title,description:description,content:content,_token:token},
       success:(data) =>
-        if data='success'
-          @container.find('#message-title').html('Sucess')
-          @container.find('#message-body').html('Successfuly created article')
+        if data['value']='success'
+          @messageDialog.find('#message-title').html('Sucess')
+          @messageDialog.find('#message-body').html('Successfuly created article')
+          @messageDialog.find('#message-dialog').modal('show');
         else
-          @container.find('#message-title').html('error');
-          @container.find('#message-body').html(data['error']);
-          @container.find('#message-dialog').modal('show');
+          @messageDialog.find('#message-title').html('error');
+          @messageDialog.find('#message-body').html(data['error']);
+          @messageDialog.find('#message-dialog').modal('show');
 
